@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\VehiculeManufacturer;
+
 class VehiculeManufacturerController extends Controller
 {
     /**
@@ -16,6 +18,12 @@ class VehiculeManufacturerController extends Controller
     public function index()
     {
         //
+    }
+
+    public function jsonVehiculeManufacturer()
+    {
+        $vhcManufacturer = VehiculeManufacturer::all();
+        return json_encode($vhcManufacturer); 
     }
 
     /**

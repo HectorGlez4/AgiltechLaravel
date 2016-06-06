@@ -45,7 +45,7 @@
 				</ul>-->
 			</div>
 			<div class="col-sm-6">
-				<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newVehiculeModal">New Vehicule</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newVehiculeModal" onclick="loadVehiculeManufacturer()">New Vehicule</button>
 			</div>
 		</div>
 	</div>

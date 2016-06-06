@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inBrand">Brand</label>
-              <select id="selectBrand" name="vhcbrand">
+              <select class="form-control" id="selectBrand" name="vhcbrand">
                 
               </select>
             </div>
