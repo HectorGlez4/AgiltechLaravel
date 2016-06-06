@@ -4,21 +4,14 @@
 	<h1>Vehicules</h1>
 		<h3>Filters</h3>
 		<form class="form-inline" id="frmFilter">
-			<select class="form-control" onchange="loadVehicules()">
+			<select id="select-client" class="form-control" onchange="loadVehicules()" name="filterClient">
 				<option>Select Client</option>
-				<option>Keolis</option>
-				<option>Client1</option>
-				<option>Client2</option>
-				<option>Client3</option>
-				<option>Client4</option>
-				<option>Client5</option>
-				<option>Client6</option>
-				<option>Client7</option>
-				<option>Client8</option>
-				<option>Client9</option>
+				@foreach ($clients as $client)
+					<option value={{{$client->CLI_ID}}}>{{{$client->CLI_Name}}}</option>
+				@endforeach
 			</select>
 		 	<div class="form-group">
-			    <input type="text" class="form-control" id="vehicule" placeholder="Vehicule">
+			    <input type="text" class="form-control" id="vehicule" placeholder="Vehicule" onclick="loadVehicules()">
 			</div>
 			<button type="submit" class="btn btn-primary">Filter</button>
 		</form>
@@ -41,7 +34,7 @@
 		</div>
 		<div id="vehiculesFooter" class="row hidden">
 			<div class="col-sm-6">
-				<ul class="pagination">
+				<!--<ul class="pagination">
 				  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 				  <li class="active"><a href="#">1</a></li>
 				  <li><a href="#">2</a></li>
@@ -49,7 +42,7 @@
 				  <li><a href="#">4</a></li>
 				  <li><a href="#">5</a></li>
 				  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-				</ul>
+				</ul>-->
 			</div>
 			<div class="col-sm-6">
 				<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newVehiculeModal">New Vehicule</button>
@@ -57,5 +50,6 @@
 		</div>
 	</div>
 	<script src="{{asset('js/vehicules.js')}}"></script>
+	@include('modals.createVehicule');
 	<?php /*include_once("modals/newVehiculeModal.php");*/ ?>
 @stop

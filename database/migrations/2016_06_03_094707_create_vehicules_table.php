@@ -17,6 +17,7 @@ class CreateVehiculesTable extends Migration
             $table->string('VHC_IDV');
             $table->string('VHC_Registration');
             $table->integer('CLI_ID');
+            $table->integer('VHMO_ID');
             $table->boolean('VHC_Active');
             //$table->timestamps();
         });

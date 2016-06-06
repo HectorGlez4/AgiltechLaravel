@@ -19,6 +19,6 @@ Route::get('/db', function () {
     return DB::select('select database()');
 });
 
-Route::get('/vehicules', function () {
-    return view('vehicules');
-});
+Route::resource('vehicule', 'VehiculeController');
+
+Route::get('/vehicule/client/{id}', 'VehiculeController@jsonVehiculeClient');
