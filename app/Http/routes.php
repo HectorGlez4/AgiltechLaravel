@@ -18,3 +18,7 @@ Route::get('/login', function () {
 Route::get('/db', function () {
     return DB::select('select database()');
 });
+
+Route::get('/vehicules', function () {
+    return view('vehicules');
+});

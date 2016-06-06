@@ -2,10 +2,9 @@ function loadVehicules()
 {
 	dataFilter = $("#frmFilter").serialize();
 	$.ajax({
-		url: '/agiltech/js/vehicules.json',
+		url: '/vehicules/client/',
 		type: 'POST',
-		dataType: 'json',
-		data: dataFilter,
+		dataType: 'json'
 	}).done(function(data)
 	{
 		var sTable = "";
@@ -27,4 +26,8 @@ function loadVehicules()
 		$("#tbVehicules").html(sTable);
 		$("#vehiculesFooter").removeClass("hidden");
 	})
+}
+function loadClients()
+{
+	
 }
