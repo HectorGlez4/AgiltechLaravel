@@ -2,7 +2,8 @@ function loadVehicules()
 {
 	URL = "/vehicule/client/";
 	URL +=  $("#select-client").val();
-	alert(URL);
+	$("#iClient").val($("#select-client").val());
+	//alert(URL);
 	$.ajax({
 		url: URL,
 		type: 'get',
@@ -38,7 +39,7 @@ function loadClients()
 function loadVehiculeManufacturer()
 {
 	URL = "/vehicule/manufacturer/";
-	alert(URL);
+	//alert(URL);
 	$.ajax({
 		url: URL,
 		type: 'get',
@@ -52,6 +53,44 @@ function loadVehiculeManufacturer()
 			sTable +="<option value='"+manufacturer.VHMA_ID+"''>"+ manufacturer.VHMA_Name+"</option>"
 		});
 		$("#selectBrand").html(sTable);
+	})
+}
+
+function loadVehiculeModel()
+{
+	URL = "/vehicule/manufacturer/";
+	URL += $("#selectBrand").val() + "/model";
+	$.ajax({
+		url: URL,
+		type: 'get',
+		dataType: 'json'
+	}).done(function(data)
+	{
+		var sTable = "";
+
+		$.each(data, function(index, model)
+		{
+			sTable +="<option value='"+model.VHMO_ID+"''>"+ model.VHMO_Name+"</option>"
+		});
+		$("#selectModel").html(sTable);
+	})
+}
+
+function createVehicule()
+{
+	data = new FormData($("#frmCreateVehicule")[0]);
+	//alert(data);
+	$.ajax({
+		url: "/vehicule/create",
+		type: 'post',
+		dataType: 'json',
+		data: data,cache: false,
+        contentType: false,
+        processData: false
+	}).done(function(response)
+	{
+		loadVehicules();
+		console.log(response);
 	})
 }
 

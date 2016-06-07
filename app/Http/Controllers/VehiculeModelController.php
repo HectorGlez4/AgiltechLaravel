@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\VehiculeModel;
 
 class VehiculeModelController extends Controller
 {
@@ -16,6 +17,12 @@ class VehiculeModelController extends Controller
     public function index()
     {
         //
+    }
+
+    public function jsonVehiculeModel($idManufacturer)
+    {
+        $vhcModel = VehiculeModel::where('VHMA_ID',(int) $idManufacturer)->get();
+        return json_encode($vhcModel); 
     }
 
     /**

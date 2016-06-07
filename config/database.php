@@ -55,10 +55,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'port' => env('DB_PORT', '3306'),
+            'port' => '3306',
             'database' => 'agiltech',
             'username' => 'root',
-            'password' => '123456',
+            'password' => '',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

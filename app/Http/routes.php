@@ -20,8 +20,28 @@ Route::get('/db', function () {
     return DB::select('select database()');
 });
 
+// Route to get json with all Vehicule Manufacturers
 Route::get('/vehicule/manufacturer','VehiculeManufacturerController@jsonVehiculeManufacturer');
 
-Route::resource('vehicule', 'VehiculeController');
+/*
+* Route to get all vehicule models for a given Vehicule Manufacturer where
+* {id} is the id of the manufacturer
+*/
+Route::get('/vehicule/manufacturer/{id}/model','VehiculeModelController@jsonVehiculeModel');
 
+/*
+* route to vehicules main page
+*/
+Route::get('/vehicule', 'VehiculeController@index');
+
+/*
+* route to create a new vehicule
+*/
+Route::post('/vehicule/create', 'VehiculeController@store');
+
+/*
+* route to get all vehicules for a given client where {id} is the id of the 
+* client
+*/
 Route::get('/vehicule/client/{id}', 'VehiculeController@jsonVehiculeClient');
+

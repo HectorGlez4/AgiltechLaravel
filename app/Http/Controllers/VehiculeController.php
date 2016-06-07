@@ -41,7 +41,24 @@ class VehiculeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehicule = new Vehicule();
+        $input = $request->all();
+        if($request->hasFile('iPhoto'));
+        {
+            $file = $request->file('iPhoto');
+            $filepath = "\\assets\\img\\"; 
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $file = $file->move(public_path() . $filepath, $filename);
+            $fpath = public_path() . $filepath . $filename;
+            $vehicule->VHC_Photo = $fpath;
+        }
+        $vehicule->VHC_Registration = $input["iRegistration"];
+        $vehicule->VHC_IDV = $input["iIDV"];
+        $vehicule->VHMO_ID = $input["iModel"];
+        //$vehicule->VHC_CirculationDate = $input["iCirculationDate"];
+        $vehicule->CLI_ID = $input["iClient"];
+        $vehicule->save();
+        return json_encode($fpath);
     }
 
     /**
@@ -52,7 +69,7 @@ class VehiculeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     public function jsonVehiculeClient($filterClient)
