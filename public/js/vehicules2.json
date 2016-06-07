@@ -1,0 +1,46 @@
+{
+	"vehicules": [{
+		"id": 1,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},
+	{
+		"id": 2,
+		"registration": "XX-YXZ-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},{
+		"id": 3,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},{
+		"id": 4,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},{
+		"id": 5,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},{
+		"id": 6,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	},{
+		"id": 7,
+		"registration": "XX-XXX-XX",
+		"idVehicule": "XXXXXXX",
+		"brand": "Brand X",
+		"model": "Model X"
+	}]
+}

@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/login', function () {
+    return view('login');
 });
+
+Route::get('/db', function () {
+    return DB::select('select database()');
+});
+
+Route::get('/vehicule/manufacturer','VehiculeManufacturerController@jsonVehiculeManufacturer');
+
+Route::resource('vehicule', 'VehiculeController');
+
+Route::get('/vehicule/client/{id}', 'VehiculeController@jsonVehiculeClient');

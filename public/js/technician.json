@@ -1,0 +1,24 @@
+{
+	"technicianni": [{
+		"id": 1,
+		"name": "Marc Deldem"
+	},
+	{
+		"id": 2,
+		"name": "Mathieu Coulon"
+	},{
+		"id": 3,
+		"name": "Sebastien Lasson"
+	},{
+		"id": 4,
+		"name": "Frank Gaby"
+	}],
+
+	"technician" : [{
+		"id": 1,
+		"name": "Michael Berteloot"
+	},{
+		"id": 2,
+		"name": "Laurent Chanaud"
+	}]
+}
