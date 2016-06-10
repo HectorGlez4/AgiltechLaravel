@@ -35,13 +35,36 @@ Route::get('/vehicule/manufacturer/{id}/model','VehiculeModelController@jsonVehi
 Route::get('/vehicule', 'VehiculeController@index');
 
 /*
+* route to update a vehicule
+*/
+Route::post('/vehicule/update', 'VehiculeController@update');
+
+/*
 * route to create a new vehicule
 */
 Route::post('/vehicule/create', 'VehiculeController@store');
+
 
 /*
 * route to get all vehicules for a given client where {id} is the id of the 
 * client
 */
 Route::get('/vehicule/client/{id}', 'VehiculeController@jsonVehiculeClient');
+/*
+* route to get all vehicules for a given client where {id} is the id of the 
+* client
+*/
+Route::get('/vehicule/filter/{filter}', 'VehiculeController@jsonVehiculeFilter');
+
+/*
+* route to get the details of a given vehicule in a json format
+*/
+Route::get('/vehicule/{id}/jshow', 'VehiculeController@jsonShow');
+
+/*
+* route to vehicule configuration page where {id} is the id of the vehicule.
+*/
+Route::get('/vehicule/{id}/configuration', 'VehiculeController@vehiculeConfiguration');
+
+
 

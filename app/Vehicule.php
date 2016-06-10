@@ -8,4 +8,5 @@ class Vehicule extends Model
 {
     //
     public $timestamps = false;
+    protected $primaryKey = 'VHC_ID';
 }

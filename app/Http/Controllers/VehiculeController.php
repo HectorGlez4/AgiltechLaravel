@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Client;
 use App\Vehicule;
+use DB;
 
 class VehiculeController extends Controller
 {
@@ -20,7 +21,7 @@ class VehiculeController extends Controller
     {
         $clients = Client::all();
         //return var_dump($clients);
-        return view('vehicules')->with('clients', $clients);
+        return view('vehicules', ['clients'=>$clients, 'title'=>"Vehicules"]);
     }
 
     /**
@@ -43,22 +44,22 @@ class VehiculeController extends Controller
     {
         $vehicule = new Vehicule();
         $input = $request->all();
-        if($request->hasFile('iPhoto'));
+        if($request->file('iPhoto') != null)
         {
             $file = $request->file('iPhoto');
             $filepath = "\\assets\\img\\"; 
             $filename = time() . "-" . $file->getClientOriginalName();
             $file = $file->move(public_path() . $filepath, $filename);
-            $fpath = public_path() . $filepath . $filename;
+            $fpath =  $filepath . $filename;
             $vehicule->VHC_Photo = $fpath;
         }
         $vehicule->VHC_Registration = $input["iRegistration"];
         $vehicule->VHC_IDV = $input["iIDV"];
         $vehicule->VHMO_ID = $input["iModel"];
-        //$vehicule->VHC_CirculationDate = $input["iCirculationDate"];
+        $vehicule->VHC_CirrculationDate = $input["iCirculationDate"];
         $vehicule->CLI_ID = $input["iClient"];
         $vehicule->save();
-        return json_encode($fpath);
+        return json_encode(true);
     }
 
     /**
@@ -67,15 +68,35 @@ class VehiculeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function jsonShow($idVehicule)
     {
-        
+        $Vehicule = DB::table('vehicules')
+                        ->join('vehicule_models', 'vehicules.VHMO_ID', "=", "vehicule_models.VHMO_ID")
+                        ->join('vehicule_manufacturers', 'vehicule_models.VHMA_ID', "=", "vehicule_manufacturers.VHMA_ID")
+                        ->where('VHC_ID', (int)$idVehicule)
+                        ->get();// Vehicule::where('VHC_ID', (int)$idVehicule)->get();
+        return json_encode($Vehicule);
+    }
+
+    public function vehiculeConfiguration()
+    {
+        return "Hello Configuration";   
     }
 
     public function jsonVehiculeClient($filterClient)
     {
-        $filteredVehicules = Vehicule::where('CLI_ID', (int)$filterClient)->get();
-        return $filteredVehicules; 
+        $filteredVehicules = Vehicule::
+                                join('vehicule_models', 'vehicules.VHMO_ID', "=", "vehicule_models.VHMO_ID")
+                                ->join('vehicule_manufacturers', 'vehicule_models.VHMA_ID', "=", "vehicule_manufacturers.VHMA_ID")
+                                ->where('CLI_ID', (int)$filterClient)
+                                ->get();
+        return json_encode($filteredVehicules); 
+    }
+
+    public function jsonVehiculeFilter($filter)
+    {
+        $filteredVehicules = Vehicule::where('VHC_Registration', "LIKE", "%".$filter."%")->get();
+        return json_encode($filteredVehicules); 
     }
 
     /**
@@ -96,10 +117,30 @@ class VehiculeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+        $vehicule = Vehicule::findOrFail($input["iVehiculeID"]);
+        $hasPhoto = isset($input['iPhoto']);
+        if($hasPhoto)
+        {
+            $file = $request->file('iPhoto');
+            $filepath = "\\assets\\img\\"; 
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $file = $file->move(public_path() . $filepath, $filename);
+            $fpath =  $filepath . $filename;
+            $vehicule->VHC_Photo = $fpath;
+        }
+        $vehicule->VHC_Registration = $input["iRegistration"];
+        $vehicule->VHC_IDV = $input["iIDV"];
+        $vehicule->VHMO_ID = $input["iModel"];
+        $vehicule->VHC_CirrculationDate = $input["iCirculationDate"];
+        $vehicule->CLI_ID = $input["iClient"];
+        $vehicule->save();
+        return(csrf_token());
     }
+
+
 
     /**
      * Remove the specified resource from storage.

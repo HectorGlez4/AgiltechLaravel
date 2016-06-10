@@ -11,9 +11,9 @@
 				@endforeach
 			</select>
 		 	<div class="form-group">
-			    <input type="text" class="form-control" id="vehicule" placeholder="Vehicule" onclick="loadVehicules()">
+			    <input type="text" class="form-control" id="iFilterVehicule" placeholder="Vehicule" >
 			</div>
-			<button type="submit" class="btn btn-primary">Filter</button>
+			<a class="btn btn-primary" onclick="loadVehiculesFilter(event)">Filter</a>
 		</form>
 		<br/>
 		<div class="table-responsive">
@@ -28,7 +28,7 @@
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody id="tbVehicules">
+				<tbody id="tbVehicules" class='rowlink' data-link='row'>
 				</tbody>
 			</table>
 		</div>
@@ -49,7 +49,10 @@
 			</div>
 		</div>
 	</div>
+	
+	@include('modals.createVehicule')
+	@include('modals.editVehicule')
+	@include('modals.overviewVehicule')
 	<script src="{{asset('js/vehicules.js')}}"></script>
-	@include('modals.createVehicule');
 	<?php /*include_once("modals/newVehiculeModal.php");*/ ?>
 @stop
