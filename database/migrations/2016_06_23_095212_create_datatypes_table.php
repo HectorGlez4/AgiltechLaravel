@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLInterInterActionTable extends Migration
+class CreateDatatypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class CreateLInterInterActionTable extends Migration
      */
     public function up()
     {
-        Schema::create('inter_inter_actions', function (Blueprint $table) {
-            $table->increments('INIA_ID');
-            $table->integer('INT_ID');
-            $table->integer('INAC_ID');
-
-            //$table->timestamps();
+        Schema::create('datatypes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +25,6 @@ class CreateLInterInterActionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inter_inter_actions');
+        Schema::drop('datatypes');
     }
 }

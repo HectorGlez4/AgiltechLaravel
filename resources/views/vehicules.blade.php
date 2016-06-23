@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 
 @section('content')
@@ -53,6 +54,7 @@
 	@include('modals.createVehicule')
 	@include('modals.editVehicule')
 	@include('modals.overviewVehicule')
+	@include('modals.toggleActive')
 	<script src="{{asset('js/vehicules.js')}}"></script>
 	<?php /*include_once("modals/newVehiculeModal.php");*/ ?>
 @stop

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLInterInterActionTable extends Migration
+class CreateLFirmwareIosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateLInterInterActionTable extends Migration
      */
     public function up()
     {
-        Schema::create('inter_inter_actions', function (Blueprint $table) {
-            $table->increments('INIA_ID');
-            $table->integer('INT_ID');
-            $table->integer('INAC_ID');
-
+        Schema::create('l_firmware_io', function (Blueprint $table) {
+            $table->increments('FIIO_ID');
+            $table->integer('FRW_ID');
+            $table->integer('IO_ID');
             //$table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateLInterInterActionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inter_inter_actions');
+        Schema::drop('l_firmware_ios');
     }
 }

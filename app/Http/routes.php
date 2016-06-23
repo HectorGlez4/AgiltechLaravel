@@ -44,6 +44,11 @@ Route::post('/vehicule/update', 'VehiculeController@update');
 */
 Route::post('/vehicule/create', 'VehiculeController@store');
 
+/*
+* route to toggle Active flag in a vehicule (logical supresion)
+*/
+Route::post('/vehicule/delete', 'VehiculeController@toggle');
+
 
 /*
 * route to get all vehicules for a given client where {id} is the id of the 
@@ -64,7 +69,12 @@ Route::get('/vehicule/{id}/jshow', 'VehiculeController@jsonShow');
 /*
 * route to vehicule configuration page where {id} is the id of the vehicule.
 */
-Route::get('/vehicule/{id}/configuration', 'VehiculeController@vehiculeConfiguration');
+Route::get('/vehicule/{vehiculeID}/detail', 'VehiculeController@vehiculeDetail');
+
+/*
+* route to vehicule configuration page where {id} is the id of the vehicule.
+*/
+Route::get('/vehicule/{vehiculeID}/configuration', 'VehiculeController@vehiculeConfiguration');
 
 
 

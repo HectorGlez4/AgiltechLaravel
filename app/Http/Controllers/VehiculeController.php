@@ -25,16 +25,6 @@ class VehiculeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -78,9 +68,26 @@ class VehiculeController extends Controller
         return json_encode($Vehicule);
     }
 
-    public function vehiculeConfiguration()
+    public function vehiculeDetail($idVehicule)
     {
-        return "Hello Configuration";   
+        $vehicule = DB::table('vehicules')
+                                        ->join('vehicule_models', 'vehicules.VHMO_ID', "=", "vehicule_models.VHMO_ID")
+                                        ->join('vehicule_manufacturers', 'vehicule_models.VHMA_ID', "=", "vehicule_manufacturers.VHMA_ID")
+                                        ->join('clients', 'vehicules.CLI_ID', "=", "clients.CLI_ID")
+                                        ->where('VHC_ID', (int)$idVehicule)
+                                        ->first();
+        return view('vehiculeDetail', ['vehicule'=>$vehicule]);  
+    }
+
+    public function vehiculeConfiguration($idVehicule)
+    {
+        $vehicule = DB::table('vehicules')
+                                        ->join('vehicule_models', 'vehicules.VHMO_ID', "=", "vehicule_models.VHMO_ID")
+                                        ->join('vehicule_manufacturers', 'vehicule_models.VHMA_ID', "=", "vehicule_manufacturers.VHMA_ID")
+                                        ->join('clients', 'vehicules.CLI_ID', "=", "clients.CLI_ID")
+                                        ->where('VHC_ID', (int)$idVehicule)
+                                        ->first();
+        return view('vehiculeConfiguration', ['vehicule'=>$vehicule]);  
     }
 
     public function jsonVehiculeClient($filterClient)
@@ -99,22 +106,12 @@ class VehiculeController extends Controller
         return json_encode($filteredVehicules); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $iVehiculeID
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -143,13 +140,21 @@ class VehiculeController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Toggle Active status from a vehicule
      *
-     * @param  int  $id
+     * @param  int  $idVehicule
+     * @param  bool $active
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function toggle(Request $request)
     {
-        //
+        $input = $request->all();
+        $state = (boolean)$input["active"];
+        $vehicule = Vehicule::findORFail($input["idVehicule"]);
+        $vehicule->VHC_Active = !$state;
+        $vehicule->save();
+        return (csrf_token());
+
+
     }
 }

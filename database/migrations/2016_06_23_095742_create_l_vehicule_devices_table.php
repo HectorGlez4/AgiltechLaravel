@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLInterInterActionTable extends Migration
+class CreateLVehiculeDevicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateLInterInterActionTable extends Migration
      */
     public function up()
     {
-        Schema::create('inter_inter_actions', function (Blueprint $table) {
-            $table->increments('INIA_ID');
-            $table->integer('INT_ID');
-            $table->integer('INAC_ID');
-
+        Schema::create('l_vehicule_device', function (Blueprint $table) {
+            $table->increments('VEDE_ID');
+            $table->integer('VHC_ID');
+            $table->integer('DEV_ID');
+            $table->boolean('VEDE_Active');
             //$table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateLInterInterActionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inter_inter_actions');
+        Schema::drop('l_vehicule_devices');
     }
 }

@@ -17,7 +17,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-lg btn-default pull-left" data-dismiss="modal">Close</button>
-        <a class="btn btn-lg btn-primary"  href="" id="btnConfigureVehicule">Configure Vehicule</a>
+        <a class="btn btn-lg btn-primary"  href="" id="btnConfigureVehicule">Vehicule Detail</a>
     </div>
   </div>  
  </div>
